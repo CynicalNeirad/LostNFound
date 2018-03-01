@@ -22,22 +22,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${items}">
+        <tr th:each="appItem : ${items}">
 
 
-            <td th:text="${item.itemTitle}"></td>
+            <td th:text="${appItem.itemTitle}"></td>
 
-            <div th:each="person : ${item.itemPoster}">
+            <div th:each="person : ${appItem.appItemPoster}">
                 <td th:text="${person.username}"></td>
             </div>
 
-            <td th:text="${item.itemCategory}"></td>
+            <td th:text="${appItem.itemCategory}"></td>
 
-            <td th:text="${item.itemDescription}"></td>
+            <td th:text="${appItem.itemDescription}"></td>
 
-            <td th:text="${item.itemStatus}"></td>
+            <td th:text="${appItem.itemStatus}"></td>
 
-        <td><a th:href="@{/swap/{id}(id=${item.id})}">Switch this item's state</a></td>
+        <td><a th:href="@{/swap/{id}(id=${appItem.id})}">Switch this appItem's state</a></td>
 
 
         </tr>

@@ -65,21 +65,24 @@ public class HomeController {
     }
     @GetMapping("/additem")
     public String addItem(Model model){
-        com.example.demo.Item item = new Item();
-        itemRepository.save(item);
+        AppItem appItem = new AppItem();
+        itemRepository.save(appItem);
         model.addAttribute("users", appUserRepository.findAll());
-        model.addAttribute("item", item);
+        model.addAttribute("item", appItem);
         return "addItemPage";
     }
     @PostMapping("/processitem")
-    public String processItem(@Valid @ModelAttribute("product") com.example.demo.Item item, Model model, BindingResult result, Authentication authentication){
+    public String processItem(@Valid @ModelAttribute("item") AppItem appItem, BindingResult result, Model model, Authentication authentication){
+        System.out.println(appItem.getItemPoster());
         if(result.hasErrors()){
             return "addItemPage";
         }
         else{
-                item.setItemStatus("Lost");
-                item.addItemPoster(appUserRepository.findAppUserByUsername(authentication.getName()));
-                itemRepository.save(item);
+            appItem.setItemStatus("Lost");
+            if (appItem.getItemPoster().equals("")){
+                appItem.addItemPoster(appUserRepository.findAppUserByUsername(authentication.getName())); }
+            System.out.println(appItem.getItemPoster());
+            itemRepository.save(appItem);
 
             return "redirect:/";
         }
@@ -88,17 +91,19 @@ public class HomeController {
     public String search(HttpServletRequest request, Model model){
 
         String searchString = request.getParameter("search");
-        Iterable<Item> item = itemRepository.findAllByItemTitleContains(searchString);
+        Iterable<AppItem> item = itemRepository.findAllByItemTitleContains(searchString);
         model.addAttribute("items", item);
         return "mainPage";
     }
 
     @RequestMapping("/swap/{id}")
     public String processCheckout(@PathVariable("id") long id, Model model) {
-        Item item = itemRepository.findOne(id);
-        if(item.getItemStatus().equals("Found")){item.setItemStatus("Lost");}
-        else{item.setItemStatus("Found");}
-        itemRepository.save(item);
+        AppItem appItem = itemRepository.findOne(id);
+        if(appItem.getItemStatus().equals("Found")){
+            appItem.setItemStatus("Lost");}
+        else{
+            appItem.setItemStatus("Found");}
+        itemRepository.save(appItem);
         model.addAttribute("items", itemRepository.findAll());
         return "adminPage";
     }

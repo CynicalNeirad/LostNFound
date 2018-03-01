@@ -28,18 +28,18 @@
             <a  href="/additem">Add a Missing Item</a>
         </div>
 
-        <tr th:each="item : ${items}">
+        <tr th:each="appItem : ${items}">
 
 
-            <td th:text="${item.itemTitle}"></td>
+            <td th:text="${appItem.itemTitle}"></td>
 
-            <div th:each="person : ${item.itemPoster}">
+            <div th:each="person : ${appItem.appItemPoster}">
                     <td th:text="${person.username}"></td>
             </div>
 
-            <td th:text="${item.itemCategory}"></td>
+            <td th:text="${appItem.itemCategory}"></td>
 
-            <td th:text="${item.itemDescription}"></td>
+            <td th:text="${appItem.itemDescription}"></td>
 
 
 

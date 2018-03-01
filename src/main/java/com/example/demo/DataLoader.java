@@ -69,39 +69,39 @@ public class DataLoader implements CommandLineRunner {
 
         //Load 15 initial prodcuts here
 
-        Item newItem = new Item();
-        newItem.setItemTitle("Found Thing");
-        newItem.setItemCategory("Other");
-        newItem.setItemStatus("Found");
-        newItem.setItemDescription("I found this thing");
-        itemRepository.save(newItem);
+        AppItem newAppItem = new AppItem();
+        newAppItem.setItemTitle("Found Thing");
+        newAppItem.setItemCategory("Other");
+        newAppItem.setItemStatus("Found");
+        newAppItem.setItemDescription("I found this thing");
+        itemRepository.save(newAppItem);
 
-        newItem = new Item();
-        newItem.setItemTitle("Lost Jeans");
-        newItem.setItemCategory("Clothes");
-        newItem.setItemStatus("Lost");
-        newItem.setItemDescription("I lost my Blue Jeans");
-        itemRepository.save(newItem);
+        newAppItem = new AppItem();
+        newAppItem.setItemTitle("Lost Jeans");
+        newAppItem.setItemCategory("Clothes");
+        newAppItem.setItemStatus("Lost");
+        newAppItem.setItemDescription("I lost my Blue Jeans");
+        itemRepository.save(newAppItem);
 
-        newItem = new Item();
-        newItem.setItemTitle("Lost Dog");
-        newItem.setItemCategory("Pet");
-        newItem.setItemStatus("Lost");
-        newItem.setItemDescription("Lost Husky");
-        itemRepository.save(newItem);
-
-
+        newAppItem = new AppItem();
+        newAppItem.setItemTitle("Lost Dog");
+        newAppItem.setItemCategory("Pet");
+        newAppItem.setItemStatus("Lost");
+        newAppItem.setItemDescription("Lost Husky");
+        itemRepository.save(newAppItem);
 
 
-        Item item = itemRepository.findOne(new Long(1));
-        item.addItemPoster(appUserRepository.findOne(new Long(1)));
-        itemRepository.save(item);
-        item = itemRepository.findOne(new Long(2));
-        item.addItemPoster(appUserRepository.findOne(new Long(2)));
-        itemRepository.save(item);
-        item = itemRepository.findOne(new Long(3));
-        item.addItemPoster(appUserRepository.findOne(new Long(1)));
-        itemRepository.save(item);
+
+
+        AppItem appItem = itemRepository.findOne(new Long(1));
+        appItem.addItemPoster(appUserRepository.findOne(new Long(1)));
+        itemRepository.save(appItem);
+        appItem = itemRepository.findOne(new Long(2));
+        appItem.addItemPoster(appUserRepository.findOne(new Long(2)));
+        itemRepository.save(appItem);
+        appItem = itemRepository.findOne(new Long(3));
+        appItem.addItemPoster(appUserRepository.findOne(new Long(1)));
+        itemRepository.save(appItem);
 
 
 

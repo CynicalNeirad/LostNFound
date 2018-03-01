@@ -15,17 +15,17 @@
         </button>
         <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item">
+            <li class="nav-appItem">
                 <a class="nav-link" href="/">Main Page</a>
             </li>
-            <li class="nav-item " sec:authorize="isAuthenticated()">
+            <li class="nav-appItem " sec:authorize="isAuthenticated()">
                 <a class="nav-link" href="/userpage">Your Found Items</a>
             </li>
 
-            <li class="nav-item " sec:authorize="hasAnyAuthority('ADMIN')">
+            <li class="nav-appItem " sec:authorize="hasAnyAuthority('ADMIN')">
                 <a class="nav-link" href="/adminpage">Admin Page</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-appItem dropdown">
 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
@@ -33,12 +33,12 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a sec:authorize="isAnonymous()" class="dropdown-item" href="/login">Login</a>
-                    <a sec:authorize="isAnonymous()" class="dropdown-item" href="/appuserform">Register</a>
-                    <a sec:authorize="isAuthenticated()" class="dropdown-item" href="/logout">Logout</a>
+                    <a sec:authorize="isAnonymous()" class="dropdown-appItem" href="/login">Login</a>
+                    <a sec:authorize="isAnonymous()" class="dropdown-appItem" href="/appuserform">Register</a>
+                    <a sec:authorize="isAuthenticated()" class="dropdown-appItem" href="/logout">Logout</a>
                 </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-appItem">
                 <form th:action="@{/search}" method="post">
                     <input type="text" name="search">
                     <input type="submit" value="Search">

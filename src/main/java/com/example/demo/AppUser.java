@@ -30,7 +30,7 @@ public class AppUser {
     private Set<AppRole> roles;
 
     @ManyToMany(mappedBy = "itemPoster")
-    private Set <Item> userList;
+    private Set <AppItem> userList;
 
     public void removeRole(AppRole role){
         this.roles.remove(role);
@@ -94,11 +94,11 @@ public class AppUser {
         this.roles = roles;
     }
 
-    public Set<Item> getUserList() {
+    public Set<AppItem> getUserList() {
         return userList;
     }
 
-    public void setUserList(Set<Item> userList) {
+    public void setUserList(Set<AppItem> userList) {
         this.userList = userList;
     }
 }

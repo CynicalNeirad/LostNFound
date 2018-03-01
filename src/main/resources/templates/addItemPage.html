@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <title>Product</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -13,24 +16,26 @@
 
 <form action="#"
       th:action="@{/processitem}"
-      th:object="${item}"
+      th:object="${appItem}"
       method="post">
     <div class="col-3">
         <input type="hidden" th:field="*{id}" />
     </div>
     <div class="col-3">
         <label id="labelReferenceProductName">Item Name</label>
-        <input type="text" class="form-control" id="textReferenceProductName" th:field="*{itemTitle}" placeholder="Enter the name of your item here"/>
+        <input type="text" class="form-control" id="textReferenceProductName" th:field="*{itemTitle}" placeholder="Enter the name of your appItem here"/>
         <span th:if="${#fields.hasErrors('itemTitle')}" th:errors="*{itemTitle}"></span>
     </div>
     <br/>
     <div action="itemCategory" class="col-3">
-        <p>What type of item did you lose?</p>
+        <p>What type of appItem did you lose?</p>
         <input type="radio" name="itemCategory" value="Clothes"> Clothes
         <input type="radio" name="itemCategory" value="Pet"> Pet
         <input type="radio" name="itemCategory" value="Other"> Other
     </div>
     <br/>
+
+
     <div class="col-3">
         <label id="labelReferencePrice">Item Description</label>
         <input type="text" class="form-control" id="textPrice" th:field="*{itemDescription}" placeholder="Item Description"/>
@@ -38,13 +43,14 @@
     </div>
 
 
-<!--    <p>Looking to post for another User?</p>
-    <div th:each="people : ${users}">
-        <div action="people.username" class="col-3" >
-            <td><input  type="radio" name="people" value="people.username" th:text="${people.username}"></td>
+    <select name="appItemPoster">
+        <div th:each="people : ${users}">
+        <option value="people.username" th:text="${people.username}"></option>
         </div>
+    </select>
 
-    </div>-->
+
+
     <br/>
 
     <div class="col-3">
