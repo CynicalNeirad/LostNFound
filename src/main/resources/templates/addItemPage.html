@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.tymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8" />
+    <title>Product</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+</head>
+<body>
+
+<div th:replace="base::navlinks"></div>
+
+<form action="#"
+      th:action="@{/processitem}"
+      th:object="${item}"
+      method="post">
+    <div class="col-3">
+        <input type="hidden" th:field="*{id}" />
+    </div>
+    <div class="col-3">
+        <label id="labelReferenceProductName">Item Name</label>
+        <input type="text" class="form-control" id="textReferenceProductName" th:field="*{itemTitle}" placeholder="Enter the name of your item here"/>
+        <span th:if="${#fields.hasErrors('itemTitle')}" th:errors="*{itemTitle}"></span>
+    </div>
+    <br/>
+    <div action="itemCategory" class="col-3">
+        <p>What type of item did you lose?</p>
+        <input type="radio" name="itemCategory" value="Clothes"> Clothes
+        <input type="radio" name="itemCategory" value="Pet"> Pet
+        <input type="radio" name="itemCategory" value="Other"> Other
+    </div>
+    <br/>
+    <div class="col-3">
+        <label id="labelReferencePrice">Item Description</label>
+        <input type="text" class="form-control" id="textPrice" th:field="*{itemDescription}" placeholder="Item Description"/>
+        <span th:if="${#fields.hasErrors('itemDescription')}" th:errors="*{itemDescription}"></span>
+    </div>
+
+
+<!--    <p>Looking to post for another User?</p>
+    <div th:each="people : ${users}">
+        <div action="people.username" class="col-3" >
+            <td><input  type="radio" name="people" value="people.username" th:text="${people.username}"></td>
+        </div>
+
+    </div>-->
+    <br/>
+
+    <div class="col-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
+<script
+        src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
