@@ -33,8 +33,8 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a sec:authorize="isAnonymous()" class="dropdown-appItem" href="/login">Login</a>
-                    <a sec:authorize="isAnonymous()" class="dropdown-appItem" href="/appuserform">Register</a>
+                    <a sec:authorize="isAnonymous()" class="dropdown-item" href="/login">Login</a>
+                    <a sec:authorize="isAnonymous()" class="dropdown-item" href="/appuserform">Register</a>
                     <a sec:authorize="isAuthenticated()" class="dropdown-appItem" href="/logout">Logout</a>
                 </div>
             </li>

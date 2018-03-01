@@ -16,14 +16,14 @@
 
 <form action="#"
       th:action="@{/processitem}"
-      th:object="${appItem}"
+      th:object="${item}"
       method="post">
     <div class="col-3">
         <input type="hidden" th:field="*{id}" />
     </div>
     <div class="col-3">
         <label id="labelReferenceProductName">Item Name</label>
-        <input type="text" class="form-control" id="textReferenceProductName" th:field="*{itemTitle}" placeholder="Enter the name of your appItem here"/>
+        <input type="text" class="form-control" id="textReferenceProductName" th:field="*{itemTitle}" placeholder="Enter the name of your Item here"/>
         <span th:if="${#fields.hasErrors('itemTitle')}" th:errors="*{itemTitle}"></span>
     </div>
     <br/>
@@ -43,9 +43,9 @@
     </div>
 
 
-    <select name="appItemPoster">
+    <select name="itemPoster">
         <div th:each="people : ${users}">
-        <option value="people.username" th:text="${people.username}"></option>
+        <option th:value="${people.id}" th:text="${people.username}"></option>
         </div>
     </select>
 

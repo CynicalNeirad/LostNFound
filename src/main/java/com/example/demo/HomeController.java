@@ -74,6 +74,7 @@ public class HomeController {
     @PostMapping("/processitem")
     public String processItem(@Valid @ModelAttribute("item") AppItem appItem, BindingResult result, Model model, Authentication authentication){
         System.out.println(appItem.getItemPoster());
+        System.out.println(result.toString());
         if(result.hasErrors()){
             return "addItemPage";
         }

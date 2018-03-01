@@ -27,7 +27,7 @@
 
             <td th:text="${appItem.itemTitle}"></td>
 
-            <div th:each="person : ${appItem.appItemPoster}">
+            <div th:each="person : ${appItem.itemPoster}">
                 <td th:text="${person.username}"></td>
             </div>
 
@@ -37,7 +37,7 @@
 
             <td th:text="${appItem.itemStatus}"></td>
 
-        <td><a th:href="@{/swap/{id}(id=${appItem.id})}">Switch this appItem's state</a></td>
+        <td><a th:href="@{/swap/{id}(id=${appItem.id})}">Switch this Item's state</a></td>
 
 
         </tr>
