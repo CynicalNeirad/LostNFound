@@ -15,7 +15,6 @@ public class AppUser {
 
 
     @NotEmpty
-    //@Column(unique = true)
     private String username;
 
     @NotEmpty

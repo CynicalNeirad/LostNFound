@@ -72,7 +72,6 @@ public class DataLoader implements CommandLineRunner {
         appUserRepository.save(user);
 
 
-        //Load 15 initial prodcuts here
 
         AppItem newAppItem = new AppItem();
         newAppItem.setItemTitle("Found Thing");
