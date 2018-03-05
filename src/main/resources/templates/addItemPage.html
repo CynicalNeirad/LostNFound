@@ -28,7 +28,7 @@
     </div>
     <br/>
     <div action="itemCategory" class="col-3">
-        <p>What type of appItem did you lose?</p>
+        <p>What type of item is it?</p>
         <input type="radio" name="itemCategory" value="Clothes"> Clothes
         <input type="radio" name="itemCategory" value="Pet"> Pet
         <input type="radio" name="itemCategory" value="Other"> Other
@@ -37,13 +37,14 @@
 
 
     <div class="col-3">
-        <label id="labelReferencePrice">Item Description</label>
+        <label id="labelReferencePrice">Description of item</label>
         <input type="text" class="form-control" id="textPrice" th:field="*{itemDescription}" placeholder="Item Description"/>
         <span th:if="${#fields.hasErrors('itemDescription')}" th:errors="*{itemDescription}"></span>
     </div>
 
 
     <select name="itemPoster" sec:authorize="hasAnyAuthority('ADMIN')">
+        <p>Post as another user or report a found item:</p>
         <div th:each="people : ${users}">
         <option th:value="${people.id}" th:text="${people.username}"></option>
         </div>

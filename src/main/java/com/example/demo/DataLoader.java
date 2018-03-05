@@ -66,6 +66,11 @@ public class DataLoader implements CommandLineRunner {
         user.addRole(appRoleRepository.findAppRoleByRoleName("USER"));
         appUserRepository.save(user);
 
+        user = new AppUser();
+        user.setUsername("Found Item");
+        user.setPassword("test");
+        appUserRepository.save(user);
+
 
         //Load 15 initial prodcuts here
 

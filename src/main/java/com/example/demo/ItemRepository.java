@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ItemRepository  extends CrudRepository<AppItem,Long> {
 
-    Iterable<AppItem> findAllByItemTitleContains(String search);
+    Iterable<AppItem> findAllByItemTitleContainsAndItemStatusOrItemCategoryAndItemStatus(String title, String status2, String catagory, String status);
     //AppUser findAllById(long id);
     //List<AppUser> findByUsername(String userName);
     Iterable<AppItem> findAllByItemPoster(AppItem appItemPoster);

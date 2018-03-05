@@ -21,10 +21,13 @@
             <li class="nav-appItem " sec:authorize="isAuthenticated()">
                 <a class="nav-link" href="/userpage">Your Found Items</a>
             </li>
-
+            <li class="nav-appItem " sec:authorize="hasAnyAuthority('ADMIN')">
+                <a class="nav-link" href="/foundadminpage">All found items</a>
+            </li>
             <li class="nav-appItem " sec:authorize="hasAnyAuthority('ADMIN')">
                 <a class="nav-link" href="/adminpage">Admin Page</a>
             </li>
+
             <li class="nav-appItem dropdown">
 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

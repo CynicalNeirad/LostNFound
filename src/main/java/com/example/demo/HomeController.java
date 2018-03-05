@@ -28,15 +28,20 @@ public class HomeController {
 
     @RequestMapping("/")
     public String showIndex(Model model){
-        model.addAttribute("items", itemRepository.findAllByItemStatus("lost"));
+        model.addAttribute("items", itemRepository.findAllByItemStatus("Lost"));
         return "mainPage";
-
     }
 
     @RequestMapping("/userpage")
-    public String productList(Model model, Authentication authentication){
+    public String foundItems(Model model, Authentication authentication){
         AppUser user = appUserRepository.findAppUserByUsername(authentication.getName());
-        model.addAttribute("items", itemRepository.findAllByItemStatusAndItemPoster("found",user));
+        model.addAttribute("items", itemRepository.findAllByItemStatusAndItemPoster("Found",user));
+        return "mainPage";
+    }
+
+    @RequestMapping("/foundadminpage")
+    public String allfoundItems(Model model){
+        model.addAttribute("items", itemRepository.findAllByItemStatus("Found"));
         return "mainPage";
     }
 
@@ -63,7 +68,7 @@ public class HomeController {
         }
         return "redirect:/";
     }
-    
+
     @GetMapping("/additem")
     public String addItem(Model model){
         AppItem appItem = new AppItem();
@@ -80,6 +85,12 @@ public class HomeController {
         }
         else{
             appItem.setItemStatus("Lost");
+            System.out.println(appItem.getItemPoster());
+            for(AppUser appUser : appItem.getItemPoster()){
+                AppUser userName = appUserRepository.findOne(appUser.getId());
+                if (userName.getUsername().equals("Found Item")) {
+                    appItem.setItemStatus("Found");
+                }}
             if (appItem.getItemPoster().isEmpty()){
                 appItem.addItemPoster(appUserRepository.findAppUserByUsername(authentication.getName())); }
             itemRepository.save(appItem);
@@ -91,7 +102,8 @@ public class HomeController {
     public String search(HttpServletRequest request, Model model){
 
         String searchString = request.getParameter("search");
-        Iterable<AppItem> item = itemRepository.findAllByItemTitleContains(searchString);
+        String catagroySearch = searchString;
+        Iterable<AppItem> item = itemRepository.findAllByItemTitleContainsAndItemStatusOrItemCategoryAndItemStatus(searchString,"Lost", catagroySearch, "Lost");
         model.addAttribute("items", item);
         return "mainPage";
     }
