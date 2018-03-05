@@ -63,6 +63,7 @@ public class HomeController {
         }
         return "redirect:/";
     }
+    
     @GetMapping("/additem")
     public String addItem(Model model){
         AppItem appItem = new AppItem();
@@ -71,23 +72,21 @@ public class HomeController {
         model.addAttribute("item", appItem);
         return "addItemPage";
     }
+
     @PostMapping("/processitem")
     public String processItem(@Valid @ModelAttribute("item") AppItem appItem, BindingResult result, Model model, Authentication authentication){
-        System.out.println(appItem.getItemPoster());
-        System.out.println(result.toString());
         if(result.hasErrors()){
             return "addItemPage";
         }
         else{
             appItem.setItemStatus("Lost");
-            if (appItem.getItemPoster().equals("")){
+            if (appItem.getItemPoster().isEmpty()){
                 appItem.addItemPoster(appUserRepository.findAppUserByUsername(authentication.getName())); }
-            System.out.println(appItem.getItemPoster());
             itemRepository.save(appItem);
-
             return "redirect:/";
         }
     }
+
     @PostMapping("/search")
     public String search(HttpServletRequest request, Model model){
 

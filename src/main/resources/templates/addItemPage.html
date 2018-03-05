@@ -43,7 +43,7 @@
     </div>
 
 
-    <select name="itemPoster">
+    <select name="itemPoster" sec:authorize="hasAnyAuthority('ADMIN')">
         <div th:each="people : ${users}">
         <option th:value="${people.id}" th:text="${people.username}"></option>
         </div>
